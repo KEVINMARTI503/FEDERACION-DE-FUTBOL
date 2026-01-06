@@ -1,8 +1,6 @@
--- Esquema de Base de Datos para una Federación de Fútbol (Adaptado del esquema de Tienda)
-
 create schema federacion;
 
--- 1. Tabla Club (Similar a Proveedor en el esquema original)
+-- 1. Tabla Club 
 CREATE TABLE federacion.Club (
   id_club SERIAL PRIMARY KEY,
   nombre VARCHAR(255) UNIQUE NOT NULL,
@@ -13,7 +11,7 @@ CREATE TABLE federacion.Club (
   actualizado_en TIMESTAMP
 );
 
--- 2. Tabla Persona (Jugadores, Entrenadores, Árbitros - Similar a Cliente en el esquema original)
+-- 2. Tabla Persona 
 CREATE TABLE federacion.Persona (
   id_persona SERIAL PRIMARY KEY,
   tipo_persona VARCHAR(20) NOT NULL CHECK (tipo_persona IN ('JUGADOR', 'ENTRENADOR', 'ARBITRO', 'DIRECTIVO')),
@@ -30,7 +28,7 @@ CREATE TABLE federacion.Persona (
   UNIQUE (tipo_identificacion, identificacion)
 );
 
--- 3. Tabla Torneo (Similar a Tipo_Producto en el esquema original)
+-- 3. Tabla Torneo 
 CREATE TABLE federacion.Torneo (
   id_torneo SERIAL PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
@@ -43,7 +41,7 @@ CREATE TABLE federacion.Torneo (
   UNIQUE (nombre, temporada)
 );
 
--- 4. Tabla Plantilla (Relación Club - Persona - Similar a Inventario en el esquema original)
+-- 4. Tabla Plantilla 
 CREATE TABLE federacion.Plantilla (
   id_plantilla SERIAL PRIMARY KEY,
   id_club INT NOT NULL,
@@ -61,7 +59,7 @@ CREATE TABLE federacion.Plantilla (
   UNIQUE (id_club, id_persona, fecha_fin) -- Una persona solo puede estar en un club a la vez (si fecha_fin es NULL)
 );
 
--- 5. Tabla Partido (Similar a Factura en el esquema original)
+-- 5. Tabla Partido
 CREATE TABLE federacion.Partido (
   id_partido SERIAL PRIMARY KEY,
   id_torneo INT NOT NULL,
@@ -82,7 +80,7 @@ CREATE TABLE federacion.Partido (
   FOREIGN KEY (arbitro_principal_id) REFERENCES federacion.Persona(id_persona) -- Asumiendo que el árbitro es una Persona
 );
 
--- 6. Tabla Detalle_Partido (Eventos del partido - Similar a Detalle_Factura en el esquema original)
+-- 6. Tabla Detalle_Partido 
 CREATE TABLE federacion.Detalle_Partido (
   id_detalle SERIAL PRIMARY KEY,
   id_partido INT NOT NULL,
