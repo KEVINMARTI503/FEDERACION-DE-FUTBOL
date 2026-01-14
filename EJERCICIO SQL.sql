@@ -1,7 +1,7 @@
-create schema federacion;
+CREATE SCHEMA ksanchez;
 
 -- 1. Tabla Club 
-CREATE TABLE federacion.Club (
+CREATE TABLE ksanchez.Club (
   id_club SERIAL PRIMARY KEY,
   nombre VARCHAR(255) UNIQUE NOT NULL,
   ciudad VARCHAR(100),
@@ -12,7 +12,7 @@ CREATE TABLE federacion.Club (
 );
 
 -- 2. Tabla Persona 
-CREATE TABLE federacion.Persona (
+CREATE TABLE ksanchez.Persona (
   id_persona SERIAL PRIMARY KEY,
   tipo_persona VARCHAR(20) NOT NULL CHECK (tipo_persona IN ('JUGADOR', 'ENTRENADOR', 'ARBITRO', 'DIRECTIVO')),
   tipo_identificacion VARCHAR(10) NOT NULL CHECK (tipo_identificacion IN ('CEDULA', 'PASAPORTE')),
@@ -29,7 +29,7 @@ CREATE TABLE federacion.Persona (
 );
 
 -- 3. Tabla Torneo 
-CREATE TABLE federacion.Torneo (
+CREATE TABLE ksanchez.Torneo (
   id_torneo SERIAL PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
   temporada VARCHAR(50) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE federacion.Torneo (
 );
 
 -- 4. Tabla Plantilla 
-CREATE TABLE federacion.Plantilla (
+CREATE TABLE ksanchez.Plantilla (
   id_plantilla SERIAL PRIMARY KEY,
   id_club INT NOT NULL,
   id_persona INT NOT NULL,
@@ -54,13 +54,13 @@ CREATE TABLE federacion.Plantilla (
   activo BOOLEAN DEFAULT TRUE,
   creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   actualizado_en TIMESTAMP,
-  FOREIGN KEY (id_club) REFERENCES federacion.Club(id_club),
-  FOREIGN KEY (id_persona) REFERENCES federacion.Persona(id_persona),
+  FOREIGN KEY (id_club) REFERENCES ksanchez.Club(id_club),
+  FOREIGN KEY (id_persona) REFERENCES ksanchez.Persona(id_persona),
   UNIQUE (id_club, id_persona, fecha_fin) -- Una persona solo puede estar en un club a la vez (si fecha_fin es NULL)
 );
 
 -- 5. Tabla Partido
-CREATE TABLE federacion.Partido (
+CREATE TABLE ksanchez.Partido (
   id_partido SERIAL PRIMARY KEY,
   id_torneo INT NOT NULL,
   club_local_id INT NOT NULL,
@@ -74,14 +74,14 @@ CREATE TABLE federacion.Partido (
   activo BOOLEAN DEFAULT TRUE,
   creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   actualizado_en TIMESTAMP,
-  FOREIGN KEY (id_torneo) REFERENCES federacion.Torneo(id_torneo),
-  FOREIGN KEY (club_local_id) REFERENCES federacion.Club(id_club),
-  FOREIGN KEY (club_visitante_id) REFERENCES federacion.Club(id_club),
-  FOREIGN KEY (arbitro_principal_id) REFERENCES federacion.Persona(id_persona) -- Asumiendo que el árbitro es una Persona
+  FOREIGN KEY (id_torneo) REFERENCES ksanchez.Torneo(id_torneo),
+  FOREIGN KEY (club_local_id) REFERENCES ksanchez.Club(id_club),
+  FOREIGN KEY (club_visitante_id) REFERENCES ksanchez.Club(id_club),
+  FOREIGN KEY (arbitro_principal_id) REFERENCES ksanchez.Persona(id_persona) -- Asumiendo que el árbitro es una Persona
 );
 
 -- 6. Tabla Detalle_Partido 
-CREATE TABLE federacion.Detalle_Partido (
+CREATE TABLE ksanchez.Detalle_Partido (
   id_detalle SERIAL PRIMARY KEY,
   id_partido INT NOT NULL,
   minuto INT NOT NULL CHECK (minuto >= 0),
@@ -91,7 +91,7 @@ CREATE TABLE federacion.Detalle_Partido (
   activo BOOLEAN DEFAULT TRUE,
   creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   actualizado_en TIMESTAMP,
-  FOREIGN KEY (id_partido) REFERENCES federacion.Partido(id_partido),
-  FOREIGN KEY (persona_afectada_id) REFERENCES federacion.Persona(id_persona),
-  FOREIGN KEY (persona_asistencia_id) REFERENCES federacion.Persona(id_persona)
+  FOREIGN KEY (id_partido) REFERENCES ksanchez.Partido(id_partido),
+  FOREIGN KEY (persona_afectada_id) REFERENCES ksanchez.Persona(id_persona),
+  FOREIGN KEY (persona_asistencia_id) REFERENCES ksanchez.Persona(id_persona)
 );
