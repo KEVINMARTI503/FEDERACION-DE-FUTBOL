@@ -1,4 +1,4 @@
-INSERT INTO federacion.Club (nombre, ciudad, fecha_fundacion) VALUES
+INSERT INTO ksanchez.Club (nombre, ciudad, fecha_fundacion) VALUES
 ('Ciudadanos Tigres Oriental 1', 'Loja', '2006-02-05'),
 ('Nacional Cóndores Unidos 2', 'Babahoyo', '1993-07-06'),
 ('Marinos Tigres CD 3', 'Loja', '1971-07-14'),
@@ -50,7 +50,7 @@ INSERT INTO federacion.Club (nombre, ciudad, fecha_fundacion) VALUES
 ('Fuerza Guerreros FC 49', 'Esmeraldas', '2005-02-19'),
 ('Guerreros Atlético Oriental 50', 'Nueva Loja', '1971-07-04');
 
-INSERT INTO federacion.Persona (tipo_persona, tipo_identificacion, identificacion, nombre, apellido, fecha_nacimiento, nacionalidad, email) VALUES
+INSERT INTO ksanchez.Persona (tipo_persona, tipo_identificacion, identificacion, nombre, apellido, fecha_nacimiento, nacionalidad, email) VALUES
 ('JUGADOR', 'CEDULA', '9454176439', 'Víctor', 'Torres', '1991-01-20', 'FRANCIA', 'víctor.torres1@fed.com'),
 ('JUGADOR', 'CEDULA', '1015349561', 'Pedro', 'Ochoa', '1992-01-24', 'ITALIA', 'pedro.ochoa2@fed.com'),
 ('JUGADOR', 'CEDULA', '3515716120', 'Juan', 'Jara', '1994-11-12', 'ITALIA', 'juan.jara3@fed.com'),
@@ -245,7 +245,7 @@ INSERT INTO federacion.Persona (tipo_persona, tipo_identificacion, identificacio
 ('ARBITRO', 'CEDULA', '5714111117', 'Tomás', 'Mendoza', '1973-01-02', 'ITALIA', 'tomás.mendoza475@fed.com'),
   
 -- ==== TORNEO (30) ====
-INSERT INTO federacion.Torneo (nombre, temporada, fecha_inicio, fecha_fin) VALUES
+INSERT INTO ksanchez.Torneo (nombre, temporada, fecha_inicio, fecha_fin) VALUES
 ('Torneo Liga 1', '2026', '2026-01-01', '2026-12-31'),
 ('Torneo Liga 2', '2024', '2026-01-01', '2026-12-31'),
 ('Torneo Liga 3', '2024', '2026-01-01', '2026-12-31'),
@@ -278,7 +278,7 @@ INSERT INTO federacion.Torneo (nombre, temporada, fecha_inicio, fecha_fin) VALUE
 ('Torneo Copa 30', '2024', '2026-01-01', '2026-12-31');
 
 -- ==== PLANTILLA (450) ====
-INSERT INTO federacion.Plantilla (id_club, id_persona, posicion, rol, numero_camiseta) VALUES
+INSERT INTO ksanchez.Plantilla (id_club, id_persona, posicion, rol, numero_camiseta) VALUES
 (1, 1, 'DEFENSA', NULL, 3),
 (1, 2, 'DELANTERO', NULL, 99),
 (1, 3, 'PORTERO', NULL, 38),
@@ -731,7 +731,7 @@ INSERT INTO federacion.Plantilla (id_club, id_persona, posicion, rol, numero_cam
 (50, 450, NULL, 'DT', NULL);
 
 -- ==== PARTIDO (200) ====
-INSERT INTO federacion.Partido (id_torneo, club_local_id, club_visitante_id, fecha_hora, estadio, arbitro_principal_id, goles_local, goles_visitante, estado) VALUES
+INSERT INTO ksanchez.Partido (id_torneo, club_local_id, club_visitante_id, fecha_hora, estadio, arbitro_principal_id, goles_local, goles_visitante, estado) VALUES
 (11, 38, 3, '2026-05-01 15:00:00', 'Estadio Central', 461, 5, 2, 'FINALIZADO'),
 (10, 32, 10, '2026-05-01 15:00:00', 'Estadio Central', 496, 2, 1, 'FINALIZADO'),
 (29, 50, 28, '2026-05-01 15:00:00', 'Estadio Central', 467, 3, 0, 'FINALIZADO'),
@@ -934,7 +934,7 @@ INSERT INTO federacion.Partido (id_torneo, club_local_id, club_visitante_id, fec
 (4, 8, 38, '2026-05-01 15:00:00', 'Estadio Central', 462, 5, 0, 'FINALIZADO');
 
 -- ==== DETALLE_PARTIDO (1000) ====
-INSERT INTO federacion.Detalle_Partido (id_partido, minuto, tipo_evento, persona_afectada_id, persona_asistencia_id) VALUES
+INSERT INTO ksanchez.Detalle_Partido (id_partido, minuto, tipo_evento, persona_afectada_id, persona_asistencia_id) VALUES
 (1, 73, 'GOL', 346, NULL),
 (1, 16, 'TARJETA_ROJA', 366, NULL),
 (1, 30, 'GOL', 28, NULL),
